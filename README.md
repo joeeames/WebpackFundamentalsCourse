@@ -1,5 +1,8 @@
 # Webpack Fundamentals Course
-This course is out of date.
+
+**This course is up to date.**
+
+## Recent Updates
 
 Babel has undergone a major revision since the course was recorded. Because of this, you'll have to make a couple simple changes for babel to work properly. This only matters if you are using the latest versions of babel, and not the ones shown in the course. If using the versions shown in the course, you can ignore this.
 
