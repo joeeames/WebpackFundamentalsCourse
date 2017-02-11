@@ -23,3 +23,16 @@ npm install babel-preset-es2015 --save-dev
 `
 
 You can download the .babelrc file from this repository to use if you want. Also, a fully working package.json file has been included in the repository if you want to download and use it.
+
+Also, there are 2 differences in technical implementation in Webpack 2. 
+
+
+1) webpack.config.js module "loaders" is now "rules" in Webpack 2 and "pre" and "post" loaders go in the "rules" section using "enforce" as "pre" or "post"
+
+
+
+2) the v1 version of extract-text-webpack-plugin is not compatible with WebPack 2 and the syntax is different for using it. As of today, the v2 of the plugin is in beta but I successfully installed it and used it to process SASS/CSS in a separate bundle.
+
+
+
+
