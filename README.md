@@ -33,6 +33,11 @@ Also, there are 2 differences in technical implementation in Webpack 2.
 
 2) the v1 version of extract-text-webpack-plugin is not compatible with WebPack 2 and the syntax is different for using it. As of today, the v2 of the plugin is in beta but I successfully installed it and used it to process SASS/CSS in a separate bundle.
 
-
+Finally, when adding jshint-loader in the Using Preloaders clip, you'll need to add an empty set of curly braces to .jshintrc:  
+`
+{}
+`
+  
+This will prevent the jshint-loader module from erroring out.
 
 
