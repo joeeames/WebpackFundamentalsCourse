@@ -1,6 +1,8 @@
 # Webpack Fundamentals Course
 
-**This course is up to date.**
+**This course is out of date.**
+
+Webpack is now version 2, this course was built on version 1. Although most of the content of the course is still applicable, several small items have changed and will break through the course if you follow along. Notes to fix some of the issues follow here in this readme.
 
 ## Recent Updates
 
@@ -39,5 +41,76 @@ Finally, when adding jshint-loader in the Using Preloaders clip, you'll need to 
 `
   
 This will prevent the jshint-loader module from erroring out.
+
+### preLoader property no longer exists
+
+The property preLoader no longer exists for the webpack configuration file. You will receive this error:
+```
+configuration.module has an unknown property 'preLoaders'.
+```
+A solution to this problem here:
+http://stackoverflow.com/questions/39668579/webpack-2-1-0-beta-25-error-unknown-property-postloaders
+
+So the code:
+```javascript
+module.exports = {
+    entry: ["./utils", "./app.js"],
+    output: {
+        filename: "bundle.js"
+    },
+    watch: true,
+
+    module: {
+        preLoaders: [
+            {
+                test: /\.js$/, // include .js files
+                exclude: /node_modules/, // exclude any and all files in the node_modules folder
+                loader: "jshint-loader"
+            }
+        ],
+        loaders: [
+            {
+                test: /\.es6$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            }
+        ]
+    },
+    resolve: {
+        extensions: ['.js','.es6']
+    }
+}
+```
+Should now look like this:
+```javascript
+module.exports = {
+    entry: ["./utils", "./app.js"],
+    output: {
+        filename: "bundle.js"
+    },
+    watch: true,
+
+    module: {
+        loaders: [
+            {
+                test: /\.es6$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "jshint-loader",
+                enforce: 'pre'
+            }
+        ]
+    },
+    resolve: {
+        extensions: ['.js','.es6']
+    }
+}
+```
+(thank you to James Daniel)
+
 
 
